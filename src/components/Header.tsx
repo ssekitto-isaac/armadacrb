@@ -54,7 +54,7 @@ const navItems: NavItem[] = [
       { label: "Credit Information & Risk Reports", href: "#credit-reports", description: "Actionable insights for credit decisions" },
       { label: "Decision and Data Analytics", href: "#analytics", description: "Data-driven business intelligence" },
       { label: "Portfolio & Risk Management", href: "#portfolio", description: "Comprehensive risk management solutions" },
-      { label: "Consumer Services", href: "#consumer", description: "Services designed for individual consumers" },
+      { label: "Data Management", href: "#data-management", description: "Data is a valuable source of actionable insight" },
     ],
   },
   { label: "News", href: "#news" },

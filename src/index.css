@@ -20,11 +20,11 @@
     --popover-foreground: 215 25% 15%;
 
     /* Primary - Deep Navy */
-    --primary: 215 70% 18%;
+    --primary: 204 100% 24%;
     --primary-foreground: 0 0% 100%;
 
     /* Secondary - Teal Accent */
-    --secondary: 174 62% 47%;
+    --secondary: 125 38% 68%;
     --secondary-foreground: 0 0% 100%;
 
     /* Accent - Coral/Orange for CTAs */
@@ -47,9 +47,9 @@
     --radius: 0.5rem;
 
     /* Custom Armada colors */
-    --navy: 215 70% 18%;
-    --navy-dark: 215 75% 12%;
-    --navy-light: 215 60% 25%;
+    --navy: 204 100% 24%;
+    --navy-dark: 204 100% 24%;
+    --navy-light: 204 100% 24%;
     --teal: 174 62% 47%;
     --teal-light: 174 62% 55%;
     --coral: 16 85% 58%;
@@ -80,7 +80,7 @@
     --primary: 174 62% 47%;
     --primary-foreground: 215 70% 12%;
 
-    --secondary: 215 50% 25%;
+    --secondary: 125 38% 68%;
     --secondary-foreground: 0 0% 98%;
 
     --muted: 215 50% 20%;
@@ -170,6 +170,16 @@
     @apply bg-card rounded-xl p-8 shadow-lg border border-border/50 transition-all duration-300 hover:shadow-xl hover:-translate-y-1;
   }
 
+  /* On hover, fill card with navy and make text white */
+  .value-card:hover {
+    @apply bg-navy text-primary-foreground;
+  }
+
+  .value-card:hover h3,
+  .value-card:hover p {
+    @apply text-primary-foreground;
+  }
+
   .product-card {
     @apply bg-card rounded-xl overflow-hidden shadow-lg border border-border/50 transition-all duration-300 hover:shadow-2xl hover:-translate-y-2;
   }
@@ -180,7 +190,16 @@
   }
 
   .icon-circle-outline {
-    @apply w-20 h-20 rounded-full border-2 border-primary flex items-center justify-center mb-6 transition-all duration-300 group-hover:bg-primary;
+    @apply w-20 h-20 rounded-full border-2 border-primary flex items-center justify-center mb-6 transition-all duration-300;
+  }
+
+  /* When the card (group) is hovered, make the icon circle white and the icon navy */
+  .value-card:hover .icon-circle-outline {
+    @apply bg-primary-foreground border-transparent;
+  }
+
+  .value-card:hover .icon-circle-outline svg {
+    @apply text-navy;
   }
 
   /* Stats section */
@@ -216,6 +235,19 @@
 
   .footer-link {
     @apply text-primary-foreground/80 hover:text-secondary transition-colors duration-200;
+  }
+
+  /* Smooth scrolling for in-page anchors */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Highlight a product card briefly when navigated to via anchor */
+  .product-card:target {
+    box-shadow: 0 24px 48px rgba(0, 102, 171, 0.18);
+    border-color: hsl(var(--navy));
+    transform: translateY(-4px);
+    transition: box-shadow 250ms ease, transform 200ms ease;
   }
 }
 
