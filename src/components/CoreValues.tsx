@@ -7,14 +7,14 @@ const values = [
     description: "We relentlessly pursue creative solutions to improve our processes and systems.",
   },
   {
-    icon: Award,
-    title: "Excellence",
-    description: "We go above and beyond to exceed our valued client's expectations.",
-  },
-  {
     icon: Users,
     title: "Collaboration",
     description: "We promote an environment of respect and collaboration, supporting each other.",
+  },
+  {
+    icon: Award,
+    title: "Excellence",
+    description: "We go above and beyond to exceed our valued client's expectations.",
   },
   {
     icon: ShieldCheck,

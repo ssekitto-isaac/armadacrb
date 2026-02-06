@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { Menu, X, ChevronDown, Twitter, Linkedin, Instagram, Youtube } from "lucide-react";
+// import heroImage from "@assets/two_ladies_african american final.jpeg";
+import heroImage from "@/assets/hero-image.jpg";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -54,7 +56,7 @@ const navItems: NavItem[] = [
       { label: "Credit Information & Risk Reports", href: "#credit-reports", description: "Actionable insights for credit decisions" },
       { label: "Decision and Data Analytics", href: "#analytics", description: "Data-driven business intelligence" },
       { label: "Portfolio & Risk Management", href: "#portfolio", description: "Comprehensive risk management solutions" },
-      { label: "Consumer Services", href: "#consumer", description: "Services designed for individual consumers" },
+      { label: "Data Management", href: "#data-management", description: "Data is a valuable source of actionable insight" },
     ],
   },
   { label: "News", href: "#news" },
@@ -188,9 +190,7 @@ const Header = () => {
               <SheetHeader>
                 <SheetTitle className="text-left">
                   <div className="flex items-center">
-                    <div className="w-8 h-8 bg-gradient-to-br from-secondary to-teal-light rounded-lg flex items-center justify-center">
-                      <span className="text-secondary-foreground font-bold text-lg">A</span>
-                    </div>
+                    <img src="/armada-logo.png" alt="Armada logo" className="w-8 h-8 object-contain rounded-lg" />
                     <div className="ml-2">
                       <span className="text-xl font-heading font-bold text-primary">ARMADA</span>
                     </div>

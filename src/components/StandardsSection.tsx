@@ -45,8 +45,8 @@ const StandardsSection = () => {
               className="value-card group text-center"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
-              <div className="icon-circle-outline mx-auto group-hover:bg-primary">
-                <card.icon className="w-8 h-8 text-primary group-hover:text-primary-foreground transition-colors" />
+              <div className="icon-circle-outline mx-auto">
+                <card.icon className="w-8 h-8 text-primary group-hover:text-navy transition-colors" />
               </div>
               <h3 className="text-xl font-heading font-bold text-foreground mb-3">
                 {card.title}
@@ -54,7 +54,7 @@ const StandardsSection = () => {
               <p className="text-muted-foreground mb-6">{card.description}</p>
               <a
                 href={card.link}
-                className="inline-flex items-center gap-2 text-secondary font-semibold hover:gap-3 transition-all"
+                className="inline-flex items-center gap-2 text-secondary font-semibold hover:gap-3 transition-all rounded-full px-4 py-2 group-hover:bg-navy-dark group-hover:text-primary-foreground"
               >
                 Read more
                 <ArrowRight className="w-4 h-4" />

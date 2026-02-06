@@ -2,28 +2,32 @@ import { ArrowRight, FileText, BarChart3, Shield, Database } from "lucide-react"
 
 const products = [
   {
+    id: "credit-reports",
     icon: FileText,
     title: "Credit Information & Risk Reports",
     description: "Credit information and risk reports are an important source of actionable insights",
-    link: "#",
+    link: "#credit-reports",
   },
   {
+    id: "analytics",
     icon: BarChart3,
     title: "Decision and Data Analytics",
     description: "Data speaks. We know its voice help you to understand the language",
-    link: "#",
+    link: "#analytics",
   },
   {
+    id: "portfolio",
     icon: Shield,
     title: "Portfolio & Risk Management",
     description: "Risk is ubiquitous. You need a partner that works hand-in-glove with you to manage",
-    link: "#",
+    link: "#portfolio",
   },
   {
+    id: "data-management",
     icon: Database,
     title: "Data Management",
     description: "Data is a valuable source of actionable insight. Organizations that win",
-    link: "#",
+    link: "#data-management",
   },
 ];
 
@@ -45,9 +49,11 @@ const ProductSuite = () => {
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {products.map((product, index) => (
             <div
+              id={product.id}
               key={product.title}
-              className="product-card group"
+              className="product-card group scroll-mt-24"
               style={{ animationDelay: `${index * 0.1}s` }}
+              aria-label={product.title}
             >
               {/* Icon Header */}
               <div className="bg-primary p-8 flex justify-center">
