@@ -3,14 +3,14 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+import Index from "./pages/Index";
 import ProductSuitePage from "./pages/ProductSuitePage";
 import CreditReportsPage from "./pages/CreditReportsPage";
 import AnalyticsPage from "./pages/AnalyticsPage";
 import PortfolioPage from "./pages/PortfolioPage";
 import DataManagementPage from "./pages/DataManagementPage";
 import NewsPage from "./pages/NewsPage";
-
-import Index from "./pages/Index";
 import Contact from "./pages/Contactus";
 import SelfInquiry from "./pages/SelfInquiry";
 import NotFound from "./pages/NotFound";

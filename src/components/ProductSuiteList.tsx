@@ -10,10 +10,34 @@ interface Product {
 }
 
 const products: Product[] = [
-  { id: "credit-reports", icon: FileText, title: "Credit Information & Risk Reports", description: "Credit information and risk reports are an important source of actionable insights.", link: "/product-suites/credit-reports" },
-  { id: "analytics", icon: BarChart3, title: "Decision and Data Analytics", description: "Data speaks. We know its voice and help you understand its language.", link: "/product-suites/analytics" },
-  { id: "portfolio", icon: Shield, title: "Portfolio & Risk Management", description: "Risk is ubiquitous. You need a partner that works hand-in-glove with you to manage it.", link: "/product-suites/portfolio" },
-  { id: "data-management", icon: Database, title: "Data Management", description: "Data is a valuable source of actionable insight for organizations that win.", link: "/product-suites/data-management" },
+  { 
+    id: "credit-reports", 
+    icon: FileText, 
+    title: "Credit Information & Risk Reports", 
+    description: "Credit information and risk reports are an important source of actionable insights.", 
+    link: "/product-suites/credit-reports" 
+  },
+  { 
+    id: "analytics", 
+    icon: BarChart3, 
+    title: "Decision and Data Analytics", 
+    description: "Data speaks. We know its voice and help you understand its language.", 
+    link: "/product-suites/analytics" 
+  },
+  { 
+    id: "portfolio", 
+    icon: Shield, 
+    title: "Portfolio & Risk Management", 
+    description: "Risk is ubiquitous. You need a partner that works hand-in-glove with you to manage it.", 
+    link: "/product-suites/portfolio" 
+  },
+  { 
+    id: "data-management", 
+    icon: Database, 
+    title: "Data Management", 
+    description: "Data is a valuable source of actionable insight for organizations that win.", 
+    link: "/product-suites/data-management" 
+  },
 ];
 
 const ProductSuiteList = () => {
