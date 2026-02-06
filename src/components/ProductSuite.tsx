@@ -1,4 +1,5 @@
 import { ArrowRight, FileText, BarChart3, Shield, Database } from "lucide-react";
+import productsHeroImage from "@/assets/armada-18.jpg";
 
 const products = [
   {
