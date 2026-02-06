@@ -1,6 +1,7 @@
+import { ArrowRight, FileText, BarChart3, Shield, Database, ChevronRight } from "lucide-react";
+import productsHeroImage from "@/assets/armada-18.jpg";
 import React from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, FileText, BarChart3, Shield, Database, ChevronRight } from "lucide-react";
 
 const products = [
   {
