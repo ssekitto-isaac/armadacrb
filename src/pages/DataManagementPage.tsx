@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import TopBar from "@/components/TopBar";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -34,6 +35,10 @@ const dataServices: DataService[] = [
 ];
 
 const DataManagementPage = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className="min-h-screen flex flex-col">
       <TopBar />
