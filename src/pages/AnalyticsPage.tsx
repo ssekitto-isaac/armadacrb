@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import TopBar from "@/components/TopBar";
 import Header from "@/components/Header";
 import ProductHero from "@/components/ProductHero";
@@ -53,6 +54,10 @@ const analyticsServices: AnalyticsService[] = [
 ];
 
 const AnalyticsPage = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className="min-h-screen flex flex-col">
       <TopBar />
