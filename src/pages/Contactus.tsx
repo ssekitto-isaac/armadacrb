@@ -200,15 +200,9 @@ const Contact = () => {
         <div className="container mx-auto px-6 relative z-10">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <motion.div initial={{ opacity: 0, x: -25 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.6 }}>
-              <div className="inline-flex items-center gap-2 px-3 py-1 bg-emerald-50 text-emerald-700 rounded-full text-[10px] font-bold tracking-widest uppercase mb-6">
-                <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-                </span>
-                Active Support Channel
-              </div>
+             
               <h1 className="text-4xl md:text-6xl font-black text-slate-900 mb-6 leading-tight">
-                Corporate support <br/>
+                Contact Us  <br/>
                 <span className="text-emerald-600">at your service.</span>
               </h1>
               <p className="text-lg text-slate-500 max-w-lg leading-relaxed antialiased">

@@ -7,6 +7,10 @@ import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import Contact from "./pages/Contactus";
 import SelfInquiry from "./pages/SelfInquiry";
+import FAQPage from "./pages/FAQ";
+import DisputeResolutionForm from "./pages/DisputeResolutionForm";
+import AboutArmada from "./pages/AboutArmada";
+import OurPeople from "./pages/OurPeople";
 
 const queryClient = new QueryClient();
 
@@ -20,6 +24,11 @@ const App = () => (
           <Route path="/" element={<Index />} />
            <Route path="/contact" element={<Contact />} />
               <Route path="/SelfInquiry" element={<SelfInquiry />} />
+              <Route path="/FAQ" element={<FAQPage />} />
+                 <Route path="/DisputeResolutionForm" element={<DisputeResolutionForm />} />
+                  <Route path="/AboutArmada" element={<AboutArmada />} />
+                    <Route path="/OurPeople" element={<OurPeople />} />
+                          <Route path="*" element={<NotFound />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
