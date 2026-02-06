@@ -1,5 +1,5 @@
 import { ArrowRight, CheckCircle } from "lucide-react";
-import aboutImage from "@/assets/about-image.jpg";
+import aboutImage from "@/assets/about-image.png";
 
 const features = [
   "Licensed by Bank of Uganda",

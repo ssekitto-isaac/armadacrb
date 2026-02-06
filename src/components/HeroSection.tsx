@@ -1,32 +1,59 @@
 import { useState, useEffect, useRef } from "react";
 import { Play, ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 // import heroImage from "@/assets/hero-image.jpg";
-import hero1 from "@/assets/two_ladies_african american final.jpeg";
-import hero2 from "@/assets/white_and_african_lady3.png";
+// import hero1 from "@/assets/two_ladies_african american final.jpeg";
+import hero1 from "@/assets/welcome2.png";
+import hero2 from "@/assets/credit_report.png";
 import hero3 from "@/assets/analytics_african_men.png";
+import hero4 from "@/assets/women_standing_final2.png";
+import hero5 from "@/assets/risk_int.png";
+import hero6 from "@/assets/lady and the guy.png";
 
 const slides = [
-	{
-		title: "ArmadaScore®",
-		subtitle: "A good credit score gives you easy access to credit. Know your credit score today",
-		cta: "View Now",
-		link: "#",
-		image: hero1,
-	},
-	{
-		title: "Credit Reports",
-		subtitle: "Our predictive score module makes it possible for creditors to access credit applicants",
-		cta: "View Now",
-		link: "#",
-		image: hero2,
-	},
-	{
-		title: "Analytics",
-		subtitle: "With our analytics services, you will get more insight from data while learning more about prevailing trends",
-		cta: "View More",
-		link: "#",
-		image: hero3,
-	},
+    {
+        title: "Welcome to\nArmadaCRB",
+        subtitle: "We are global leaders in credit reporting and analytics",
+        cta: "View Now",
+        link: "#",
+        image: hero1,
+    },
+
+    {
+        title: "ArmadaCreditScore®",
+        subtitle: "A proprietary credit scoring model that provides a comprehensive assessment of an individual's creditworthiness",
+        cta: "View Now",
+        link: "#",
+        image: hero6,
+    },
+    {
+        title: "Risk Reports",
+        subtitle: "Our predictive score module makes it possible for creditors to access risk reports about credit applicants",
+        cta: "View Now",
+        link: "#",
+        image: hero2,
+    },
+    {
+        title: "Analytics",
+        subtitle: "With our analytics services, you will get more insight from data while learning more about prevailing trends",
+        cta: "View More",
+        link: "#",
+        image: hero3,
+    },
+    {
+        title: "Credit Education Financial Literacy",
+        subtitle: "Credit education is key to building a healthy credit culture. Learn more about credit today",
+        cta: "View More",
+        link: "#",
+        image: hero4,
+    },
+    {
+        title: "Business Intelligence & Insights Reports",
+        subtitle: "Our risk intelligence module provides insights into credit risk factors and trends",
+        cta: "View More",
+        link: "#",
+        image: hero5,
+    },
+	
 ];
 
 const HeroSection = () => {
@@ -57,7 +84,7 @@ const HeroSection = () => {
 
 	return (
 		<section
-			className="hero-section"
+			className="hero-section h-[512px]"
 			onMouseEnter={() => setIsPaused(true)}
 			onMouseLeave={() => setIsPaused(false)}
 		>
@@ -79,9 +106,14 @@ const HeroSection = () => {
 				<div className="max-w-3xl animate-fade-in">
 					<h1
 						key={currentSlide}
-						className="text-5xl md:text-6xl lg:text-7xl font-heading font-bold text-primary-foreground mb-6 animate-slide-in-left"
+						className="text-4xl md:text-3xl lg:text-5xl font-heading font-bold text-primary-foreground mb-6 animate-slide-in-left"
 					>
-						{slides[currentSlide].title}
+						{slides[currentSlide].title.split("\n").map((line, i, arr) => (
+							<span key={i}>
+								{line}
+								{i !== arr.length - 1 && <br />}
+							</span>
+						))}
 						{slides[currentSlide].title === "ArmadaScore®" && (
 							<sup className="text-2xl">®</sup>
 						)}
