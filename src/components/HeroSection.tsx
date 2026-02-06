@@ -19,14 +19,15 @@ const slides = [
     },
 
     {
-        title: "ArmadaCreditScore®",
-        subtitle: "A proprietary credit scoring model that provides a comprehensive assessment of an individual's creditworthiness",
+        title: "ArmadaScore®",
+		subtitle: "Our predictive score module makes it possible for creditors to access risk reports about credit applicants",
+        //subtitle: "A proprietary credit scoring model that provides a comprehensive assessment of an individual's creditworthiness",
         cta: "View Now",
         link: "#",
         image: hero6,
     },
     {
-        title: "Risk Reports",
+        title: "Credit & Risk Reports",
         subtitle: "Our predictive score module makes it possible for creditors to access risk reports about credit applicants",
         cta: "View Now",
         link: "#",
@@ -40,7 +41,7 @@ const slides = [
         image: hero3,
     },
     {
-        title: "Credit Education Financial Literacy",
+        title: "Credit Education & Financial Literacy",
         subtitle: "Credit education is key to building a healthy credit culture. Learn more about credit today",
         cta: "View More",
         link: "#",
@@ -123,9 +124,9 @@ const HeroSection = () => {
 					</p>
 
 					<div className="flex items-center gap-6">
-						<button className="w-16 h-16 rounded-full bg-primary-foreground/20 backdrop-blur-sm flex items-center justify-center hover:bg-primary-foreground/30 transition-all duration-300 border border-primary-foreground/30">
+						{/* <button className="w-16 h-16 rounded-full bg-primary-foreground/20 backdrop-blur-sm flex items-center justify-center hover:bg-primary-foreground/30 transition-all duration-300 border border-primary-foreground/30">
 							<Play className="w-6 h-6 text-primary-foreground ml-1" fill="currentColor" />
-						</button>
+						</button> */}
 
 						<a
 							href={slides[currentSlide].link}

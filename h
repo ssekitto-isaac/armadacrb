@@ -1,0 +1,35 @@
+[33mcommit beb104f0b7cd3fb021afe208c2943e0ca5ee2264[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m
+Author: Isaac Ssekitto <issekitto@armadacrb.com>
+Date:   Fri Feb 6 20:36:32 2026 +0300
+
+    HomePage setup
+
+[33mcommit 51d806cdcbe91f0df46c6f10e71fdda1998dea17[m
+Author: Isaac Ssekitto <issekitto@armadacrb.com>
+Date:   Thu Feb 5 20:29:19 2026 +0300
+
+    Update Home Page with AI generated images replaced
+
+[33mcommit 00fc18649473705fd58d2c5ff3789f269ade4f23[m
+Author: Isaac Ssekitto <issekitto@armadacrb.com>
+Date:   Thu Feb 5 18:31:13 2026 +0300
+
+    Fully Built HomePage with the Proper color code
+
+[33mcommit ff6dbd6c021f437ff48994e64f08a013b366b2c1[m[33m ([m[1;31morigin/master[m[33m)[m
+Author: Isaac Ssekitto <issekitto@armadacrb.com>
+Date:   Thu Feb 5 16:53:50 2026 +0300
+
+    style(css): update .btn-secondary color to #90cd95
+
+[33mcommit 6763561d617f571bc42b1d216f779bb978dbe83e[m
+Author: Isaac Ssekitto <issekitto@armadacrb.com>
+Date:   Thu Feb 5 16:18:55 2026 +0300
+
+    feat(header): add official Armada logo
+
+[33mcommit e1fd6076b4f46e00a60f4eb1c5c869e6c1352506[m
+Author: Isaac Ssekitto <issekitto@armadacrb.com>
+Date:   Thu Feb 5 15:37:49 2026 +0300
+
+    chore: replace repo with local project files
