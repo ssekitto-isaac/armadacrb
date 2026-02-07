@@ -1,8 +1,9 @@
 import TopBar from "@/components/TopBar";
 import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 import ProductHero from "@/components/ProductHero";
 import ProductSuiteList from "@/components/ProductSuiteList";
-import Footer from "@/components/Footer";
+
 import LiveChatWidget from "./LiveChat";
 
 const Products = () => {
