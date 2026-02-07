@@ -23,7 +23,7 @@ const TopBar = () => {
             </div>
           </div>
           <a
-            href="#"
+            href="https://app.armadacrb.com/login.aspx"
             className="flex items-center gap-2 bg-secondary hover:bg-teal-light text-secondary-foreground px-6 py-2 rounded font-semibold transition-all duration-300"
           >
             <span>Member Login</span>

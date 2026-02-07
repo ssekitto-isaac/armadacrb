@@ -92,15 +92,12 @@ const Header = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2">
             <div className="flex items-center">
-              <div className="w-10 h-10 bg-gradient-to-br from-secondary to-teal-light rounded-lg flex items-center justify-center">
-                <span className="text-secondary-foreground font-bold text-xl">A</span>
-              </div>
-              <div className="ml-2">
-                <span className="text-2xl font-heading font-bold text-primary">ARMADA</span>
-                <span className="block text-[10px] text-muted-foreground tracking-widest -mt-1">
-                  CREDIT BUREAU
-                </span>
-              </div>
+              <img
+                src="/armada-logo.png"
+                alt="Armada Credit Bureau"
+                className="h-8 md:h-10 object-contain"
+              />
+              <span className="sr-only">Armada Credit Bureau</span>
             </div>
           </Link>
 

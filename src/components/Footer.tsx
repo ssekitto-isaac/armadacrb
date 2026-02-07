@@ -24,14 +24,8 @@ const Footer = () => {
           {/* About */}
           <div>
             <div className="flex items-center mb-6">
-              <div className="w-10 h-10 bg-gradient-to-br from-secondary to-teal-light rounded-lg flex items-center justify-center">
-                <span className="text-secondary-foreground font-bold text-xl">A</span>
-              </div>
-              <div className="ml-2">
-                <span className="text-2xl font-heading font-bold">ARMADA</span>
-                <span className="block text-[10px] text-primary-foreground/60 tracking-widest -mt-1">
-                  CREDIT BUREAU
-                </span>
+              <div className="w-41 h-41 flex items-center justify-center rounded-lg overflow-hidden">
+                <img src="/armada-logo-2.png" alt="Armada logo" className="w-full h-full object-contain" />
               </div>
             </div>
             <p className="text-primary-foreground/80 mb-6">
