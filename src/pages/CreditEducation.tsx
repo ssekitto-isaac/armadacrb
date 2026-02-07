@@ -1,3 +1,4 @@
+
 import TopBar from "@/components/TopBar";
 import Header from "@/components/Header";
 import CreditEducationHero from "@/components/CreditEducationHero";
@@ -21,9 +22,8 @@ const CreditEducation = () => {
         <CommonMistakesSection />
         <ResourcesSection />
       </main>
-      <Footer />
+        <Footer />
     </div>
   );
-};
+}
 
-export default CreditEducation;

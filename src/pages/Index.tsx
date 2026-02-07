@@ -8,6 +8,7 @@ import WhyChooseUs from "@/components/WhyChooseUs";
 import ProductSuite from "@/components/ProductSuite";
 import StatsSection from "@/components/StatsSection";
 import Footer from "@/components/Footer";
+import LiveChatWidget from "./LiveChat";
 
 const Index = () => {
   return (
@@ -21,6 +22,7 @@ const Index = () => {
         <AboutSection />
         <WhyChooseUs />
         <ProductSuite />
+         <LiveChatWidget />
         <StatsSection />
       </main>
       <Footer />
