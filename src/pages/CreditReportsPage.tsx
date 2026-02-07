@@ -1,8 +1,9 @@
+import { useEffect } from "react";
 import TopBar from "@/components/TopBar";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import armada25 from "@/assets/armada-25.jpg";
-import { FileText, BarChart3, CheckCircle, ArrowLeft, ArrowRight } from "lucide-react";
+import { FileText, BarChart3, CheckCircle, ArrowLeft, ArrowRight, TrendingUp, Zap } from "lucide-react";
 import { Link } from "react-router-dom";
 
 interface CreditService {
@@ -21,7 +22,7 @@ const creditServices: CreditService[] = [
   },
   {
     id: "corporate-reports",
-    icon: <BarChart3 className="w-12 h-12 text-secondary" />,
+    icon: <TrendingUp className="w-12 h-12 text-secondary" />,
     title: "Corporate Credit Reports",
     description: "Comprehensive business credit information covering company financials, payment history, and corporate risk evaluation.",
   },
@@ -33,7 +34,45 @@ const creditServices: CreditService[] = [
   },
 ];
 
+interface KeyBenefit {
+  id: string;
+  icon: React.ReactNode;
+  title: string;
+  description: string;
+}
+
+const keyBenefits: KeyBenefit[] = [
+  {
+    id: "comprehensive-analysis",
+    icon: <FileText className="w-8 h-8 text-secondary" />,
+    title: "Comprehensive Analysis",
+    description: "Detailed credit profiles covering payment history, outstanding debt, and account diversity.",
+  },
+  {
+    id: "risk-assessment-benefits",
+    icon: <BarChart3 className="w-8 h-8 text-secondary" />,
+    title: "Risk Assessment",
+    description: "Identify potential financial risks before they become problems.",
+  },
+  {
+    id: "tailored-insights",
+    icon: <Zap className="w-8 h-8 text-secondary" />,
+    title: "Tailored Insights",
+    description: "Reports designed to meet the needs of banks, telcos, lenders, and businesses.",
+  },
+  {
+    id: "fast-reliable",
+    icon: <TrendingUp className="w-8 h-8 text-secondary" />,
+    title: "Fast, Reliable Access",
+    description: "Up-to-date reports delivered quickly to support timely decision-making.",
+  },
+];
+
 const CreditReportsPage = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className="min-h-screen flex flex-col">
       <TopBar />
@@ -46,9 +85,9 @@ const CreditReportsPage = () => {
           <div className="absolute inset-0 bg-black/40" />
           <div className="relative text-center px-4">
             <h1 className="text-5xl md:text-6xl font-heading font-bold text-white mb-4">
-              Credit Information & Risk Reports
+              Risk & Credit Reports
             </h1>
-            <p className="text-xl text-white">Home - Product Suites - Credit Reports</p>
+            <p className="text-xl text-white">Home - Product Suites - Risk & Credit Reports</p>
           </div>
         </div>
 
@@ -58,18 +97,44 @@ const CreditReportsPage = () => {
               <h2 className="text-4xl font-bold text-secondary mb-6">
                 Credit information and risk reports are an important source
               </h2>
+              <p className="text-lg text-foreground leading-relaxed mb-8">
+                At Armada CRB, we turn complex data into clear, actionable insights. Our Risk and Credit Reports give businesses and individuals a comprehensive view of creditworthiness, helping them make informed decisions with confidence.
+              </p>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                {keyBenefits.map((benefit) => (
+                  <div key={benefit.id} className="flex gap-4">
+                    <div className="flex-shrink-0">
+                      {benefit.icon}
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-bold text-foreground mb-2">
+                        {benefit.title}
+                      </h3>
+                      <p className="text-foreground leading-relaxed">
+                        {benefit.description}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
               <p className="text-lg text-foreground leading-relaxed">
-                of actionable insights. Our comprehensive credit information and risk reports provide you with detailed insights into creditworthiness, financial health, and potential risks. These reports are designed to help you make informed decisions in lending, hiring, and business partnerships.
+                Whether you're evaluating a loan application, managing portfolio risk, or making strategic financial decisions, our reports provide the clarity and confidence you need to act decisively.
               </p>
             </div>
+
+            <h2 className="text-4xl font-bold text-secondary mb-12 text-center">
+              Our Credit Report Solutions
+            </h2>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {creditServices.map((service) => (
                 <div
                   key={service.id}
-                  className="bg-muted p-8 rounded-lg hover:shadow-lg transition-shadow duration-300"
+                  className="bg-muted p-8 rounded-lg hover:shadow-2xl hover:scale-105 hover:bg-secondary/10 transition-all duration-300 cursor-pointer"
                 >
-                  <div className="mb-4 flex justify-center">
+                  <div className="mb-4 flex justify-center transform hover:scale-110 transition-transform duration-300">
                     {service.icon}
                   </div>
                   <h3 className="text-2xl font-bold text-foreground mb-4 text-center">

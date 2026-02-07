@@ -19,6 +19,7 @@ import DisputeResolutionForm from "./pages/DisputeResolutionForm";
 import AboutArmada from "./pages/AboutArmada";
 import OurPeople from "./pages/OurPeople";
 import NotFound from "./pages/NotFound";
+import CreditEducation from "./pages/CreditEducation";
 
 
 const queryClient = new QueryClient();
@@ -39,6 +40,9 @@ const App = () => (
                   <Route path="/AboutArmada" element={<AboutArmada />} />
                     <Route path="/OurPeople" element={<OurPeople />} />
                       <Route path="/AnalyticsPage " element={<AnalyticsPage />} />
+                       <Route path="/CreditEducation" element={<CreditEducation />} />
+                       
+
           <Route path="/product-suites" element={<ProductSuitePage />} />
           <Route path="/product-suites/credit-reports" element={<CreditReportsPage />} />
           <Route path="/product-suites/analytics" element={<AnalyticsPage />} />

@@ -3,6 +3,7 @@ import Header from "@/components/Header";
 import ProductHero from "@/components/ProductHero";
 import ProductSuiteList from "@/components/ProductSuiteList";
 import Footer from "@/components/Footer";
+import LiveChatWidget from "./LiveChat";
 
 const ProductSuitePage = () => {
   return (
@@ -13,6 +14,7 @@ const ProductSuitePage = () => {
         <ProductHero title="Product Suites" subtitle="Home - Product Suites" />
         <ProductSuiteList />
       </main>
+       <LiveChatWidget />
       <Footer />
     </div>
   );
