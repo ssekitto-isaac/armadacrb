@@ -1,5 +1,14 @@
 import { useState } from "react";
-import { Menu, X, ChevronDown, Twitter, Linkedin, Instagram, Youtube } from "lucide-react";
+import { useLocation } from "react-router-dom";
+import {
+  Menu,
+  X,
+  ChevronDown,
+  Twitter,
+  Linkedin,
+  Instagram,
+  Youtube,
+} from "lucide-react";
 // import heroImage from "@assets/two_ladies_african american final.jpeg";
 import heroImage from "@/assets/hero-image.jpg";
 import {
@@ -38,25 +47,57 @@ interface NavItem {
 }
 
 const navItems: NavItem[] = [
-  { label: "Home", href: "#", active: true },
+  { label: "Home", href: "/", active: true },
   {
     label: "About Us",
     href: "#about",
     subItems: [
-      { label: "About Armada CRB", href: "#about", description: "Learn about our company and values" },
-      { label: "Our Vision", href: "#vision", description: "Our vision for the future of credit reporting" },
-      { label: "Our Mission", href: "#mission", description: "Our mission to serve you better" },
-      { label: "Core Values", href: "#values", description: "The principles that guide us" },
+      {
+        label: "About Armada CRB",
+        href: "#about",
+        description: "Learn about our company and values",
+      },
+      {
+        label: "Our Vision",
+        href: "#vision",
+        description: "Our vision for the future of credit reporting",
+      },
+      {
+        label: "Our Mission",
+        href: "#mission",
+        description: "Our mission to serve you better",
+      },
+      {
+        label: "Core Values",
+        href: "#values",
+        description: "The principles that guide us",
+      },
     ],
   },
   {
     label: "Product Suites",
     href: "#products",
     subItems: [
-      { label: "Credit Information & Risk Reports", href: "#credit-reports", description: "Actionable insights for credit decisions" },
-      { label: "Decision and Data Analytics", href: "#analytics", description: "Data-driven business intelligence" },
-      { label: "Portfolio & Risk Management", href: "#portfolio", description: "Comprehensive risk management solutions" },
-      { label: "Data Management", href: "#data-management", description: "Data is a valuable source of actionable insight" },
+      {
+        label: "Credit Information & Risk Reports",
+        href: "#credit-reports",
+        description: "Actionable insights for credit decisions",
+      },
+      {
+        label: "Decision and Data Analytics",
+        href: "/analytics",
+        description: "Data-driven business intelligence",
+      },
+      {
+        label: "Portfolio & Risk Management",
+        href: "#portfolio",
+        description: "Comprehensive risk management solutions",
+      },
+      {
+        label: "Data Management",
+        href: "#data-management",
+        description: "Data is a valuable source of actionable insight",
+      },
     ],
   },
   { label: "News", href: "#news" },
@@ -64,9 +105,21 @@ const navItems: NavItem[] = [
     label: "Customer Information",
     href: "#info",
     subItems: [
-      { label: "FAQs", href: "#faqs", description: "Frequently asked questions" },
-      { label: "Complaint Handling", href: "#complaints", description: "How we handle your concerns" },
-      { label: "Consumer Education", href: "/credit-education", description: "Resources to improve your credit knowledge" },
+      {
+        label: "FAQs",
+        href: "#faqs",
+        description: "Frequently asked questions",
+      },
+      {
+        label: "Complaint Handling",
+        href: "#complaints",
+        description: "How we handle your concerns",
+      },
+      {
+        label: "Consumer Education",
+        href: "/credit-education",
+        description: "Resources to improve your credit knowledge",
+      },
     ],
   },
   { label: "Contact Us", href: "#contact" },
@@ -75,13 +128,22 @@ const navItems: NavItem[] = [
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [openMobileDropdowns, setOpenMobileDropdowns] = useState<string[]>([]);
+  const [selectedTab, setSelectedTab] = useState<string | null>(null); // Track selected tab
+  const location = useLocation(); // Get current route
 
   const toggleMobileDropdown = (label: string) => {
     setOpenMobileDropdowns((prev) =>
       prev.includes(label)
         ? prev.filter((item) => item !== label)
-        : [...prev, label]
+        : [...prev, label],
     );
+  };
+
+  // Helper to check if a nav item or subitem is active
+  const isActive = (href: string) => {
+    // For hash links, ignore pathname
+    if (href.startsWith("#")) return location.hash === href;
+    return location.pathname === href;
   };
 
   return (
@@ -89,7 +151,7 @@ const Header = () => {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between py-4">
           {/* Logo */}
-          <a href="#" className="flex items-center gap-2">
+          <a href="/" className="flex items-center gap-2">
             <div className="flex items-center">
               <img
                 src="/armada-logo.png"
@@ -109,9 +171,14 @@ const Header = () => {
                     <>
                       <NavigationMenuTrigger
                         className={cn(
-                          "bg-transparent hover:bg-transparent hover:text-secondary focus:bg-transparent data-[state=open]:bg-transparent",
-                          item.active && "text-primary border-b-2 border-secondary"
+                          "bg-transparent focus:bg-transparent data-[state=open]:bg-transparent",
+                          "text-[#1A2636]", // Default Armada dark blue
+                          "hover:text-[#91CD95]", // Armada Green on hover
+                          isActive(item.href) &&
+                            "text-[#91CD95] border-b-2 border-[#91CD95]", // Armada Green highlight for active
+                          selectedTab === item.label && "text-[#0066AB]", // Armada Blue for selected
                         )}
+                        onClick={() => setSelectedTab(item.label)}
                       >
                         {item.label}
                       </NavigationMenuTrigger>
@@ -122,7 +189,14 @@ const Header = () => {
                               <NavigationMenuLink asChild>
                                 <a
                                   href={subItem.href}
-                                  className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                                  className={cn(
+                                    "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors dropdown-hover-green",
+                                    isActive(subItem.href) &&
+                                      "text-[#91CD95] bg-[#EAF7EC]",
+                                    selectedTab === subItem.label &&
+                                      "text-[#0066AB]",
+                                  )}
+                                  onClick={() => setSelectedTab(subItem.label)}
                                 >
                                   <div className="text-sm font-medium leading-none text-foreground">
                                     {subItem.label}
@@ -144,9 +218,14 @@ const Header = () => {
                       <a
                         href={item.href}
                         className={cn(
-                          "group inline-flex h-10 w-max items-center justify-center rounded-md bg-transparent px-4 py-2 text-sm font-medium transition-colors hover:text-secondary focus:text-secondary focus:outline-none",
-                          item.active && "text-primary border-b-2 border-secondary"
+                          "group inline-flex h-10 w-max items-center justify-center rounded-md bg-transparent px-4 py-2 text-sm font-medium transition-colors focus:outline-none",
+                          "text-[#1A2636]", // Armada dark blue as default
+                          "hover:text-[#91CD95]", // Armada Green on hover
+                          isActive(item.href) &&
+                            "text-[#91CD95] border-b-2 border-[#91CD95]", // Armada Green for active
+                          selectedTab === item.label && "text-[#0066AB]", // Armada Blue for selected
                         )}
+                        onClick={() => setSelectedTab(item.label)}
                       >
                         {item.label}
                       </a>
@@ -159,16 +238,28 @@ const Header = () => {
 
           {/* Social Icons */}
           <div className="hidden lg:flex items-center gap-4">
-            <a href="#" className="text-muted-foreground hover:text-secondary transition-colors">
+            <a
+              href="#"
+              className="text-muted-foreground hover:text-secondary transition-colors"
+            >
               <Twitter className="w-5 h-5" />
             </a>
-            <a href="#" className="text-muted-foreground hover:text-secondary transition-colors">
+            <a
+              href="#"
+              className="text-muted-foreground hover:text-secondary transition-colors"
+            >
               <Linkedin className="w-5 h-5" />
             </a>
-            <a href="#" className="text-muted-foreground hover:text-secondary transition-colors">
+            <a
+              href="#"
+              className="text-muted-foreground hover:text-secondary transition-colors"
+            >
               <Instagram className="w-5 h-5" />
             </a>
-            <a href="#" className="text-muted-foreground hover:text-secondary transition-colors">
+            <a
+              href="#"
+              className="text-muted-foreground hover:text-secondary transition-colors"
+            >
               <Youtube className="w-5 h-5" />
             </a>
           </div>
@@ -180,16 +271,29 @@ const Header = () => {
                 className="lg:hidden p-2 text-primary"
                 aria-label="Toggle menu"
               >
-                {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+                {isMenuOpen ? (
+                  <X className="w-6 h-6" />
+                ) : (
+                  <Menu className="w-6 h-6" />
+                )}
               </button>
             </SheetTrigger>
-            <SheetContent side="right" className="w-[300px] sm:w-[350px] bg-background">
+            <SheetContent
+              side="right"
+              className="w-[300px] sm:w-[350px] bg-background"
+            >
               <SheetHeader>
                 <SheetTitle className="text-left">
                   <div className="flex items-center">
-                    <img src="/armada-logo.png" alt="Armada logo" className="w-8 h-8 object-contain rounded-lg" />
+                    <img
+                      src="/armada-logo.png"
+                      alt="Armada logo"
+                      className="w-8 h-8 object-contain rounded-lg"
+                    />
                     <div className="ml-2">
-                      <span className="text-xl font-heading font-bold text-primary">ARMADA</span>
+                      <span className="text-xl font-heading font-bold text-primary">
+                        ARMADA
+                      </span>
                     </div>
                   </div>
                 </SheetTitle>
@@ -203,12 +307,20 @@ const Header = () => {
                           open={openMobileDropdowns.includes(item.label)}
                           onOpenChange={() => toggleMobileDropdown(item.label)}
                         >
-                          <CollapsibleTrigger className="flex items-center justify-between w-full py-3 px-2 text-foreground hover:text-secondary transition-colors font-medium">
+                          <CollapsibleTrigger
+                            className={cn(
+                              "flex items-center justify-between w-full py-3 px-2 font-medium",
+                              "text-[#1A2636]", // Armada dark blue as default
+                              "hover:text-[#91CD95]", // Armada Green on hover
+                              isActive(item.href) && "text-[#91CD95]", // Armada Green for active
+                            )}
+                          >
                             {item.label}
                             <ChevronDown
                               className={cn(
                                 "w-4 h-4 transition-transform duration-200",
-                                openMobileDropdowns.includes(item.label) && "rotate-180"
+                                openMobileDropdowns.includes(item.label) &&
+                                  "rotate-180",
                               )}
                             />
                           </CollapsibleTrigger>
@@ -218,7 +330,12 @@ const Header = () => {
                                 <a
                                   key={subItem.label}
                                   href={subItem.href}
-                                  className="py-2 px-2 text-sm text-muted-foreground hover:text-secondary transition-colors rounded-md hover:bg-accent"
+                                  className={cn(
+                                    "py-2 px-2 text-sm rounded-md",
+                                    "text-muted-foreground",
+                                    "hover:text-[#91CD95]", // Armada Green on hover
+                                    isActive(subItem.href) && "text-[#91CD95]", // Armada Green for active
+                                  )}
                                   onClick={() => setIsMenuOpen(false)}
                                 >
                                   {subItem.label}
@@ -230,7 +347,12 @@ const Header = () => {
                       ) : (
                         <a
                           href={item.href}
-                          className="block py-3 px-2 text-foreground hover:text-secondary transition-colors font-medium"
+                          className={cn(
+                            "block py-3 px-2 font-medium",
+                            "text-[#1A2636]", // Armada dark blue as default
+                            "hover:text-[#91CD95]", // Armada Green on hover
+                            isActive(item.href) && "text-[#91CD95]", // Armada Green for active
+                          )}
                           onClick={() => setIsMenuOpen(false)}
                         >
                           {item.label}
@@ -242,16 +364,28 @@ const Header = () => {
 
                 {/* Mobile Social Icons */}
                 <div className="flex items-center gap-4 mt-8 pt-6 border-t border-border px-2">
-                  <a href="#" className="text-muted-foreground hover:text-secondary transition-colors">
+                  <a
+                    href="#"
+                    className="text-muted-foreground hover:text-secondary transition-colors"
+                  >
                     <Twitter className="w-5 h-5" />
                   </a>
-                  <a href="#" className="text-muted-foreground hover:text-secondary transition-colors">
+                  <a
+                    href="#"
+                    className="text-muted-foreground hover:text-secondary transition-colors"
+                  >
                     <Linkedin className="w-5 h-5" />
                   </a>
-                  <a href="#" className="text-muted-foreground hover:text-secondary transition-colors">
+                  <a
+                    href="#"
+                    className="text-muted-foreground hover:text-secondary transition-colors"
+                  >
                     <Instagram className="w-5 h-5" />
                   </a>
-                  <a href="#" className="text-muted-foreground hover:text-secondary transition-colors">
+                  <a
+                    href="#"
+                    className="text-muted-foreground hover:text-secondary transition-colors"
+                  >
                     <Youtube className="w-5 h-5" />
                   </a>
                 </div>
