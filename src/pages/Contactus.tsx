@@ -66,38 +66,38 @@ const Contact = () => {
           <div className="absolute inset-0 bg-gradient-to-br from-blue-500/0 via-transparent to-emerald-500/0 group-hover:from-blue-500/5 group-hover:to-emerald-500/5 transition-colors duration-700 pointer-events-none" />
 
           {/* ICON LAYER (High Depth: 60px) */}
-          <div 
-            style={{ transform: "translateZ(60px)" }}
-            className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-8 transition-all duration-500 shadow-sm ${
-              item.color === 'emerald' 
-                ? 'bg-emerald-50 text-emerald-600 group-hover:bg-emerald-600 group-hover:text-white group-hover:shadow-emerald-200' 
-                : 'bg-blue-50 text-blue-700 group-hover:bg-blue-700 group-hover:text-white group-hover:shadow-blue-200'
-            }`}
-          >
-            {item.icon}
-          </div>
+       
+<div 
+  style={{ transform: "translateZ(60px)" }}
+  className={`w-14 h-14 rounded-2xl flex items-center justify-center mx-auto mb-8 transition-all duration-500 shadow-sm ${
+    item.color === 'emerald' 
+      ? 'bg-emerald-50 text-emerald-600 group-hover:bg-emerald-600 group-hover:text-white group-hover:shadow-emerald-200' 
+      : 'bg-blue-50 text-blue-700 group-hover:bg-blue-700 group-hover:text-white group-hover:shadow-blue-200'
+  }`}
+>
+  {item.icon}
+</div>
 
-          {/* TEXT LAYER (Medium Depth: 40px) */}
-          <div style={{ transform: "translateZ(40px)" }}>
-            <h3 className="text-xl font-bold text-slate-900 mb-2 tracking-tight group-hover:text-blue-900 transition-colors">
-              {item.title}
-            </h3>
-            <p className="text-slate-500 text-sm mb-8 leading-relaxed font-medium">
-              {item.desc}
-            </p>
-          </div>
-
-          {/* BUTTON LAYER (Medium Depth: 30px) */}
-          <div style={{ transform: "translateZ(30px)" }}>
-            <button className={`inline-flex items-center gap-2 text-[11px] font-black uppercase tracking-[0.15em] transition-all duration-300 ${
-              item.color === 'emerald' ? 'text-emerald-600' : 'text-blue-700'
-            }`}>
-              <span className="relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-current group-hover:after:w-full after:transition-all">
-                {item.action}
-              </span>
-              <ChevronRight className="w-3 h-3 transition-transform group-hover:translate-x-1" />
-            </button>
-          </div>
+         {/* TEXT LAYER (Medium Depth: 40px) */}
+<div style={{ transform: "translateZ(40px)" }} className="text-center">
+  <h3 className="text-xl font-bold text-slate-900 mb-2 tracking-tight group-hover:text-blue-900 transition-colors">
+    {item.title}
+  </h3>
+  <p className="text-slate-500 text-sm mb-8 leading-relaxed font-medium">
+    {item.desc}
+  </p>
+</div>
+{/* BUTTON LAYER (Medium Depth: 30px) */}
+<div style={{ transform: "translateZ(30px)" }} className="text-center">
+  <button className={`inline-flex items-center gap-2 text-[11px] font-black uppercase tracking-[0.15em] transition-all duration-300 ${
+    item.color === 'emerald' ? 'text-emerald-600' : 'text-blue-700'
+  }`}>
+    <span className="relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-current group-hover:after:w-full after:transition-all">
+      {item.action}
+    </span>
+    <ChevronRight className="w-3 h-3 transition-transform group-hover:translate-x-1" />
+  </button>
+</div>
 
           {/* Abstract 3D Geometric Shape in Background */}
           <div className="absolute -right-4 -bottom-4 opacity-0 group-hover:opacity-10 transition-opacity duration-700">
@@ -169,7 +169,7 @@ const Contact = () => {
     },
     { 
       icon: <Phone className="w-6 h-6" />, 
-      title: "Emergency Hub", 
+      title: "Toll Free  ", 
       desc: "Toll Free: 0800 280 180", 
       color: "emerald",
       action: "Call Now" 
@@ -202,23 +202,30 @@ const Contact = () => {
             <motion.div initial={{ opacity: 0, x: -25 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.6 }}>
              
               <h1 className="text-4xl md:text-6xl font-black text-slate-900 mb-6 leading-tight">
-                Contact Us  <br/>
-                <span className="text-emerald-600">at your service.</span>
+                Contact Us <br/>
+              
               </h1>
-              <p className="text-lg text-slate-500 max-w-lg leading-relaxed antialiased">
+              <p className="text-lg text-slagit chete-500 max-w-lg leading-relaxed antialiased">
                 Connect with our certified credit specialists for dispute resolution, 
                 institutional partnerships, and technical API assistance.
               </p>
             </motion.div>
-            
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.9 }} 
-              animate={{ opacity: 1, scale: 1 }} 
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="flex justify-center lg:justify-end"
-            >
-              <SupportVisual />
-            </motion.div>
+      <motion.div 
+  initial={{ opacity: 0, scale: 0.9 }} 
+  animate={{ opacity: 1, scale: 1 }} 
+  whileHover={{ scale: 1.05 }}
+  whileTap={{ scale: 0.95 }}
+  transition={{ duration: 0.8, delay: 0.2 }}
+  className="flex justify-center lg:justify-end cursor-pointer"
+  onClick={() => {
+    document.getElementById('ContactForm')?.scrollIntoView({ 
+      behavior: 'smooth',
+      block: 'start'
+    });
+  }}
+>
+  <SupportVisual />
+</motion.div>
           </div>
         </div>
         {/* Background Mesh Gradient */}
@@ -237,8 +244,8 @@ const Contact = () => {
       </section>
 
       {/* Main Support Terminal */}
-      <section className="pb-32">
-        <div className="container mx-auto px-6">
+     <section id="ContactForm" className="pb-32">
+  <div className="container mx-auto px-6">
           <div className="grid lg:grid-cols-5 gap-12">
             
             {/* Form Container */}
@@ -363,33 +370,6 @@ const Contact = () => {
         </div>
       </section>
 
-      {/* FAQ Section with Modern Accordion */}
-      <section className="py-24 bg-white border-t border-slate-100">
-        <div className="container mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-slate-900 mb-4">Knowledge Base</h2>
-            <p className="text-slate-500">Instant resolutions for repetitive inquiries</p>
-          </div>
-
-          <div className="max-w-3xl mx-auto space-y-4">
-            {[
-              { q: "How do I access my credit report?", a: "Standard reports are generated within 2-4 business hours upon verification." },
-              { q: "What documents are required?", a: "A valid National ID or Passport and a formal request letter (for businesses)." },
-              { q: "Data Accuracy Concerns?", a: "You can initiate a dispute directly through our 'Correction Request' form category." }
-            ].map((faq, i) => (
-              <details key={i} className="group bg-slate-50 rounded-2xl border border-transparent open:bg-white open:border-slate-200 open:shadow-lg transition-all duration-300">
-                <summary className="p-6 cursor-pointer font-bold text-slate-700 flex justify-between items-center list-none">
-                  {faq.q}
-                  <ChevronDown className="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform" />
-                </summary>
-                <div className="px-6 pb-6 text-slate-500 text-sm leading-relaxed antialiased">
-                  {faq.a}
-                </div>
-              </details>
-            ))}
-          </div>
-        </div>
-      </section>
 
       <Footer />
 
