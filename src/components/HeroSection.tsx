@@ -3,107 +3,16 @@ import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 import { motion } from "framer-motion";
 
 // Background images
-import hero1 from "@/assets/welcome2.png";
-import hero2 from "@/assets/credit_report.png";
+import hero1 from "@/assets/young-team.png";
+import hero2 from "@/assets/credit-report-fine.png";
 import hero3 from "@/assets/analytics_african_men.png";
 import hero4 from "@/assets/women_standing_final2.png";
 import hero5 from "@/assets/risk_int.png";
-import hero6 from "@/assets/lady and the guy.png";
+import hero6 from "@/assets/lady and the guy final.png";
+import hero7 from "@/assets/welcome6.png";
 
 // Separate clean logo (only used on welcome slide)
-import armadaLogo from "@/assets/armada-logo.png";
-
-// Animated Logo Component
-interface AnimatedLogoProps {
-  src: string;
-  alt: string;
-  className?: string;
-}
-
-function AnimatedLogo({ src, alt, className = "" }: AnimatedLogoProps) {
-  const [imageLoaded, setImageLoaded] = useState(false);
-
-  // Create 16 pieces (4x4 grid)
-  const pieces = Array.from({ length: 16 }, (_, i) => ({
-    id: i,
-    row: Math.floor(i / 4),
-    col: i % 4,
-  }));
-
-  return (
-    <div className={`relative inline-block ${className}`}>
-      {/* Hidden image to load */}
-      <img
-        src={src}
-        alt={alt}
-        className="invisible w-full h-auto"
-        onLoad={() => setImageLoaded(true)}
-      />
-
-      {/* Animated pieces overlay */}
-      {imageLoaded && (
-        <div className="absolute inset-0 w-full h-full">
-          {pieces.map((piece) => {
-            // Checkered pattern: alternate pieces come from different directions
-            const isCheckered = (piece.row + piece.col) % 2 === 0;
-            
-            // Organized positions based on checkered pattern
-            let initialX, initialY;
-            
-            if (isCheckered) {
-              // White squares - come from top-left
-              initialX = -400 - (piece.col * 50);
-              initialY = -400 - (piece.row * 50);
-            } else {
-              // Black squares - come from bottom-right
-              initialX = 400 + (piece.col * 50);
-              initialY = 400 + (piece.row * 50);
-            }
-
-            return (
-              <motion.div
-                key={piece.id}
-                initial={{
-                  x: initialX,
-                  y: initialY,
-                  opacity: 0,
-                  scale: 0.3,
-                  rotate: isCheckered ? -180 : 180,
-                }}
-                animate={{
-                  x: 0,
-                  y: 0,
-                  opacity: 1,
-                  scale: 1,
-                  rotate: 0,
-                }}
-                transition={{
-                  duration: 1.4,
-                  delay: (piece.row + piece.col) * 0.06, // Diagonal wave effect
-                  ease: [0.25, 0.46, 0.45, 0.94], // Custom easing
-                }}
-                className="absolute inset-0"
-                style={{
-                  clipPath: `inset(${piece.row * 25}% ${75 - piece.col * 25}% ${75 - piece.row * 25}% ${piece.col * 25}%)`,
-                }}
-              >
-                <img
-                  src={src}
-                  alt=""
-                  className="w-full h-auto drop-shadow-2xl object-contain"
-                  draggable={false}
-                />
-              </motion.div>
-            );
-          })}
-        </div>
-      )}
-      
-      {/* Gradient glow effect */}
-      <div className="absolute inset-0 bg-gradient-to-br from-emerald-400/10 to-blue-500/10 blur-3xl -z-10 rounded-3xl pointer-events-none" />
-    </div>
-  );
-}
+import armadaLogo from "@/assets/armada-logo-whitewords.png"; // ← confirm this path is correct
 
 const slides = [
   {
@@ -111,8 +20,9 @@ const slides = [
     subtitle: "We are global leaders in credit reporting and analytics",
     cta: "View Now",
     link: "#",
-    image: hero1,
+    image: hero1
   },
+  
   {
     title: "ArmadaScore®",
     subtitle:
@@ -126,7 +36,7 @@ const slides = [
     subtitle:
       "Our predictive score module makes it possible for creditors to access risk reports about credit applicants",
     cta: "View Now",
-    link: "#",
+    link: "/product-suites/credit-reports",
     image: hero2,
   },
   {
@@ -142,7 +52,7 @@ const slides = [
     subtitle:
       "Credit education is key to building a healthy credit culture. Learn more about credit today",
     cta: "View More",
-    link: "#",
+    link: "/credit-education",
     image: hero4,
   },
   {
@@ -159,6 +69,14 @@ const HeroSection = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const intervalRef = useRef<number | null>(null);
   const [isPaused, setIsPaused] = useState(false);
+
+  const handleCTA = (e: any, slideIndex: number) => {
+    if (slideIndex === 0 || slideIndex === 1) {
+      e?.preventDefault?.();
+      const el = document.getElementById("standards");
+      if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
 
   useEffect(() => {
     const start = () => {
@@ -214,18 +132,28 @@ const HeroSection = () => {
               <h2
                 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold tracking-wide bg-clip-text text-transparent"
                 style={{
-                  backgroundImage: "linear-gradient(to right, #91CD95, #0066AB)",
+                  backgroundImage: "linear-gradient(to right, #ffffff, #ffffff)",
                 }}
               >
                 Welcome to
               </h2>
 
-              {/* Animated logo with pieces coming together */}
-              <AnimatedLogo
-                src={armadaLogo}
-                alt="Armada Credit Bureau"
-                className="max-w-[380px] md:max-w-[420px] w-full mx-auto md:mx-0 block"
-              />
+              {/* Smaller logo */}
+              <motion.div
+                key="welcome-logo"
+                initial={{ opacity: 0, y: 30, x: -100, scale: 0.5 }}
+                animate={{ opacity: 1, y: 0, x: 0, scale: 1.0 }}
+                transition={{ duration: 2, ease: "easeOut" }}
+                className="relative inline-block max-w-[380px] md:max-w-[420px] w-full mx-auto md:mx-0 block"
+              >
+                <img
+                  src={armadaLogo}
+                  alt="Armada Credit Bureau"
+                  className="w-full h-auto drop-shadow-2xl object-contain"
+                />
+                <div className="absolute inset-0 bg-gradient-to-br from-emerald-400/10 to-blue-500/10 blur-3xl -z-10 rounded-3xl pointer-events-none" />
+              </motion.div>
+
 
               {/* Subtitle */}
               <p className="text-xl text-primary-foreground max-w-xl mx-auto md:mx-0 text-center md:text-left">
@@ -236,6 +164,7 @@ const HeroSection = () => {
               <div className="flex items-center gap-6 justify-center md:justify-start">
                 <a
                   href={slides[0].link}
+                  onClick={(e) => handleCTA(e, 0)}
                   className="btn-secondary flex items-center gap-2 group"
                 >
                   {slides[0].cta}
@@ -256,7 +185,7 @@ const HeroSection = () => {
                   </span>
                 ))}
                 {slides[currentSlide].title === "ArmadaScore®" && (
-                  <sup className="text-2xl">®</sup>
+                  <sup className="text-2xl"></sup>
                 )}
               </h1>
               <p className="text-xl text-primary-foreground mb-8 max-w-xl">
@@ -266,6 +195,7 @@ const HeroSection = () => {
               <div className="flex items-center gap-6">
                 <a
                   href={slides[currentSlide].link}
+                  onClick={(e) => handleCTA(e, currentSlide)}
                   className="btn-secondary flex items-center gap-2 group"
                 >
                   {slides[currentSlide].cta}

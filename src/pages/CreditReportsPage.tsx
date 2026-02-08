@@ -1,7 +1,7 @@
 import TopBar from "@/components/TopBar";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import armada25 from "@/assets/armada-25.jpg";
+import armada25 from "@/assets/credit_report.png";
 import { FileText, BarChart3, CheckCircle, ArrowLeft, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 
