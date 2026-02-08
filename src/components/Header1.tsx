@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import {
   Menu,
   X,
@@ -50,7 +50,7 @@ const navItems: NavItem[] = [
   { label: "Home", href: "/", active: true },
   {
     label: "About Us",
-    href: "#about",
+    href: "/#about",
     subItems: [
       {
         label: "About Armada CRB",
@@ -80,22 +80,22 @@ const navItems: NavItem[] = [
     subItems: [
       {
         label: "Credit Information & Risk Reports",
-        href: "#credit-reports",
+        href: "/product-suites",
         description: "Actionable insights for credit decisions",
       },
       {
         label: "Decision and Data Analytics",
-        href: "/analytics",
+        href: "/product-suites",
         description: "Data-driven business intelligence",
       },
       {
         label: "Portfolio & Risk Management",
-        href: "#portfolio",
+        href: "/product-suites",
         description: "Comprehensive risk management solutions",
       },
       {
         label: "Data Management",
-        href: "#data-management",
+        href: "/product-suites",
         description: "Data is a valuable source of actionable insight",
       },
     ],
@@ -117,7 +117,7 @@ const navItems: NavItem[] = [
       },
       {
         label: "Consumer Education",
-        href: "/credit-education",
+        href: "/#education",
         description: "Resources to improve your credit knowledge",
       },
     ],
@@ -128,8 +128,6 @@ const navItems: NavItem[] = [
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [openMobileDropdowns, setOpenMobileDropdowns] = useState<string[]>([]);
-  const [selectedTab, setSelectedTab] = useState<string | null>(null); // Track selected tab
-  const location = useLocation(); // Get current route
 
   const toggleMobileDropdown = (label: string) => {
     setOpenMobileDropdowns((prev) =>
@@ -139,28 +137,28 @@ const Header = () => {
     );
   };
 
-  // Helper to check if a nav item or subitem is active
-  const isActive = (href: string) => {
-    // For hash links, ignore pathname
-    if (href.startsWith("#")) return location.hash === href;
-    return location.pathname === href;
-  };
-
   return (
     <header className="bg-background sticky top-0 z-50 shadow-sm">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between py-4">
           {/* Logo */}
-          <a href="/" className="flex items-center gap-2">
+          <Link to="/" className="flex items-center gap-2">
             <div className="flex items-center">
-              <img
-                src="/armada-logo.png"
-                alt="Armada Credit Bureau"
-                className="h-8 md:h-10 object-contain"
-              />
-              <span className="sr-only">Armada Credit Bureau</span>
+              <div className="w-10 h-10 bg-gradient-to-br from-secondary to-teal-light rounded-lg flex items-center justify-center">
+                <span className="text-secondary-foreground font-bold text-xl">
+                  A
+                </span>
+              </div>
+              <div className="ml-2">
+                <span className="text-2xl font-heading font-bold text-primary">
+                  ARMADA
+                </span>
+                <span className="block text-[10px] text-muted-foreground tracking-widest -mt-1">
+                  CREDIT BUREAU
+                </span>
+              </div>
             </div>
-          </a>
+          </Link>
 
           {/* Desktop Navigation */}
           <NavigationMenu className="hidden lg:flex">
@@ -171,14 +169,10 @@ const Header = () => {
                     <>
                       <NavigationMenuTrigger
                         className={cn(
-                          "bg-transparent focus:bg-transparent data-[state=open]:bg-transparent",
-                          "text-[#1A2636]", // Default Armada dark blue
-                          "hover:text-[#91CD95]", // Armada Green on hover
-                          isActive(item.href) &&
-                            "text-[#91CD95] border-b-2 border-[#91CD95]", // Armada Green highlight for active
-                          selectedTab === item.label && "text-[#0066AB]", // Armada Blue for selected
+                          "bg-transparent hover:bg-transparent hover:text-secondary focus:bg-transparent data-[state=open]:bg-transparent",
+                          item.active &&
+                            "text-primary border-b-2 border-secondary",
                         )}
-                        onClick={() => setSelectedTab(item.label)}
                       >
                         {item.label}
                       </NavigationMenuTrigger>
@@ -187,26 +181,35 @@ const Header = () => {
                           {item.subItems.map((subItem) => (
                             <li key={subItem.label}>
                               <NavigationMenuLink asChild>
-                                <a
-                                  href={subItem.href}
-                                  className={cn(
-                                    "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors dropdown-hover-green",
-                                    isActive(subItem.href) &&
-                                      "text-[#91CD95] bg-[#EAF7EC]",
-                                    selectedTab === subItem.label &&
-                                      "text-[#0066AB]",
-                                  )}
-                                  onClick={() => setSelectedTab(subItem.label)}
-                                >
-                                  <div className="text-sm font-medium leading-none text-foreground">
-                                    {subItem.label}
-                                  </div>
-                                  {subItem.description && (
-                                    <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-                                      {subItem.description}
-                                    </p>
-                                  )}
-                                </a>
+                                {subItem.href.startsWith("/#") ? (
+                                  <a
+                                    href={subItem.href}
+                                    className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                                  >
+                                    <div className="text-sm font-medium leading-none text-foreground">
+                                      {subItem.label}
+                                    </div>
+                                    {subItem.description && (
+                                      <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+                                        {subItem.description}
+                                      </p>
+                                    )}
+                                  </a>
+                                ) : (
+                                  <Link
+                                    to={subItem.href}
+                                    className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                                  >
+                                    <div className="text-sm font-medium leading-none text-foreground">
+                                      {subItem.label}
+                                    </div>
+                                    {subItem.description && (
+                                      <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+                                        {subItem.description}
+                                      </p>
+                                    )}
+                                  </Link>
+                                )}
                               </NavigationMenuLink>
                             </li>
                           ))}
@@ -215,20 +218,29 @@ const Header = () => {
                     </>
                   ) : (
                     <NavigationMenuLink asChild>
-                      <a
-                        href={item.href}
-                        className={cn(
-                          "group inline-flex h-10 w-max items-center justify-center rounded-md bg-transparent px-4 py-2 text-sm font-medium transition-colors focus:outline-none",
-                          "text-[#1A2636]", // Armada dark blue as default
-                          "hover:text-[#91CD95]", // Armada Green on hover
-                          isActive(item.href) &&
-                            "text-[#91CD95] border-b-2 border-[#91CD95]", // Armada Green for active
-                          selectedTab === item.label && "text-[#0066AB]", // Armada Blue for selected
-                        )}
-                        onClick={() => setSelectedTab(item.label)}
-                      >
-                        {item.label}
-                      </a>
+                      {item.href.startsWith("/#") ? (
+                        <a
+                          href={item.href}
+                          className={cn(
+                            "group inline-flex h-10 w-max items-center justify-center rounded-md bg-transparent px-4 py-2 text-sm font-medium transition-colors hover:text-secondary focus:text-secondary focus:outline-none",
+                            item.active &&
+                              "text-primary border-b-2 border-secondary",
+                          )}
+                        >
+                          {item.label}
+                        </a>
+                      ) : (
+                        <Link
+                          to={item.href}
+                          className={cn(
+                            "group inline-flex h-10 w-max items-center justify-center rounded-md bg-transparent px-4 py-2 text-sm font-medium transition-colors hover:text-secondary focus:text-secondary focus:outline-none",
+                            item.active &&
+                              "text-primary border-b-2 border-secondary",
+                          )}
+                        >
+                          {item.label}
+                        </Link>
+                      )}
                     </NavigationMenuLink>
                   )}
                 </NavigationMenuItem>
@@ -307,14 +319,7 @@ const Header = () => {
                           open={openMobileDropdowns.includes(item.label)}
                           onOpenChange={() => toggleMobileDropdown(item.label)}
                         >
-                          <CollapsibleTrigger
-                            className={cn(
-                              "flex items-center justify-between w-full py-3 px-2 font-medium",
-                              "text-[#1A2636]", // Armada dark blue as default
-                              "hover:text-[#91CD95]", // Armada Green on hover
-                              isActive(item.href) && "text-[#91CD95]", // Armada Green for active
-                            )}
-                          >
+                          <CollapsibleTrigger className="flex items-center justify-between w-full py-3 px-2 text-foreground hover:text-secondary transition-colors font-medium">
                             {item.label}
                             <ChevronDown
                               className={cn(
@@ -326,37 +331,46 @@ const Header = () => {
                           </CollapsibleTrigger>
                           <CollapsibleContent>
                             <div className="pl-4 flex flex-col gap-1 pb-2">
-                              {item.subItems.map((subItem) => (
-                                <a
-                                  key={subItem.label}
-                                  href={subItem.href}
-                                  className={cn(
-                                    "py-2 px-2 text-sm rounded-md",
-                                    "text-muted-foreground",
-                                    "hover:text-[#91CD95]", // Armada Green on hover
-                                    isActive(subItem.href) && "text-[#91CD95]", // Armada Green for active
-                                  )}
-                                  onClick={() => setIsMenuOpen(false)}
-                                >
-                                  {subItem.label}
-                                </a>
-                              ))}
+                              {item.subItems.map((subItem) =>
+                                subItem.href.startsWith("/#") ? (
+                                  <a
+                                    key={subItem.label}
+                                    href={subItem.href}
+                                    className="py-2 px-2 text-sm text-muted-foreground hover:text-secondary transition-colors rounded-md hover:bg-accent"
+                                    onClick={() => setIsMenuOpen(false)}
+                                  >
+                                    {subItem.label}
+                                  </a>
+                                ) : (
+                                  <Link
+                                    key={subItem.label}
+                                    to={subItem.href}
+                                    className="py-2 px-2 text-sm text-muted-foreground hover:text-secondary transition-colors rounded-md hover:bg-accent"
+                                    onClick={() => setIsMenuOpen(false)}
+                                  >
+                                    {subItem.label}
+                                  </Link>
+                                ),
+                              )}
                             </div>
                           </CollapsibleContent>
                         </Collapsible>
-                      ) : (
+                      ) : item.href.startsWith("/#") ? (
                         <a
                           href={item.href}
-                          className={cn(
-                            "block py-3 px-2 font-medium",
-                            "text-[#1A2636]", // Armada dark blue as default
-                            "hover:text-[#91CD95]", // Armada Green on hover
-                            isActive(item.href) && "text-[#91CD95]", // Armada Green for active
-                          )}
+                          className="block py-3 px-2 text-foreground hover:text-secondary transition-colors font-medium"
                           onClick={() => setIsMenuOpen(false)}
                         >
                           {item.label}
                         </a>
+                      ) : (
+                        <Link
+                          to={item.href}
+                          className="block py-3 px-2 text-foreground hover:text-secondary transition-colors font-medium"
+                          onClick={() => setIsMenuOpen(false)}
+                        >
+                          {item.label}
+                        </Link>
                       )}
                     </div>
                   ))}

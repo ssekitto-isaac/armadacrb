@@ -130,8 +130,8 @@ const HeroSection = () => {
 
           <div className="flex items-center gap-6">
             {/* <button className="w-16 h-16 rounded-full bg-primary-foreground/20 backdrop-blur-sm flex items-center justify-center hover:bg-primary-foreground/30 transition-all duration-300 border border-primary-foreground/30">
-              <Play className="w-6 h-6 text-primary-foreground ml-1" fill="currentColor" />
-            </button> */}
+							<Play className="w-6 h-6 text-primary-foreground ml-1" fill="currentColor" />
+						</button> */}
 
             <a
               href={slides[currentSlide].link}

@@ -1,4 +1,7 @@
 import React from "react";
+import TopBar from "@/components/TopBar";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 import { motion } from "framer-motion";
 import { 
   Database, Users, TrendingUp, 
@@ -61,8 +64,8 @@ const AboutPage = () => {
 
   return (
     <div className="min-h-screen bg-white">
-      
-
+      <TopBar />
+      <Header />
        {/* HERO SECTION */}
             <section className="relative pt-32 pb-20 overflow-hidden bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900">
               {/* Animated Background Marquee */}
@@ -376,7 +379,7 @@ const AboutPage = () => {
 
         </div>
       </section>
-
+      <Footer />
     </div>
   );
 };
