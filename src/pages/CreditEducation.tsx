@@ -26,4 +26,4 @@ const CreditEducation = () => {
     </div>
   );
 }
-
+export default CreditEducation;
