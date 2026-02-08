@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
 import { Menu, X, ChevronDown, Twitter, Linkedin, Instagram, Youtube } from "lucide-react";
+import { motion } from "framer-motion";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -24,6 +25,95 @@ interface NavItem {
   label: string;
   href: string;
   subItems?: NavSubItem[];
+}
+
+// Animated Logo Component
+interface AnimatedLogoProps {
+  src: string;
+  alt: string;
+  className?: string;
+}
+
+function AnimatedLogo({ src, alt, className = "" }: AnimatedLogoProps) {
+  const [imageLoaded, setImageLoaded] = useState(false);
+
+  // Create 16 pieces (4x4 grid)
+  const pieces = Array.from({ length: 16 }, (_, i) => ({
+    id: i,
+    row: Math.floor(i / 4),
+    col: i % 4,
+  }));
+
+  return (
+    <div className={`relative inline-block ${className}`}>
+      {/* Hidden image to load */}
+      <img
+        src={src}
+        alt={alt}
+        className="invisible w-full h-auto"
+        onLoad={() => setImageLoaded(true)}
+      />
+
+      {/* Animated pieces overlay */}
+      {imageLoaded && (
+        <div className="absolute inset-0 w-full h-full">
+          {pieces.map((piece) => {
+            // Checkered pattern: alternate pieces come from different directions
+            const isCheckered = (piece.row + piece.col) % 2 === 0;
+            
+            // Organized positions based on checkered pattern
+            let initialX, initialY;
+            
+            if (isCheckered) {
+              // White squares - come from top-left
+              initialX = -200 - (piece.col * 30);
+              initialY = -200 - (piece.row * 30);
+            } else {
+              // Black squares - come from bottom-right
+              initialX = 200 + (piece.col * 30);
+              initialY = 200 + (piece.row * 30);
+            }
+
+            return (
+              <motion.div
+                key={piece.id}
+                initial={{
+                  x: initialX,
+                  y: initialY,
+                  opacity: 0,
+                  scale: 0.4,
+                  rotate: isCheckered ? -90 : 90,
+                }}
+                animate={{
+                  x: 0,
+                  y: 0,
+                  opacity: 1,
+                  scale: 1,
+                  rotate: 0,
+                }}
+                transition={{
+                  duration: 0.8,
+                  delay: (piece.row + piece.col) * 0.04, // Diagonal wave effect
+                  ease: [0.25, 0.46, 0.45, 0.94], // Custom easing
+                }}
+                className="absolute inset-0"
+                style={{
+                  clipPath: `inset(${piece.row * 25}% ${75 - piece.col * 25}% ${75 - piece.row * 25}% ${piece.col * 25}%)`,
+                }}
+              >
+                <img
+                  src={src}
+                  alt=""
+                  className="w-full h-auto object-contain"
+                  draggable={false}
+                />
+              </motion.div>
+            );
+          })}
+        </div>
+      )}
+    </div>
+  );
 }
 
 // ── Navigation Data ───────────────────────────────────── (updated hrefs only)
@@ -85,12 +175,12 @@ export default function Header() {
     <header className="bg-background sticky top-0 z-50 shadow-sm">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between py-4">
-          {/* Logo */}
+          {/* Logo with animation */}
           <a href="/" className="flex items-center gap-2 flex-shrink-0">
-            <img
+            <AnimatedLogo
               src="/armada-logo.png"
               alt="Armada Credit Bureau"
-              className="h-8 md:h-10 object-contain"
+              className="h-8 md:h-10"
             />
             <span className="sr-only">Armada Credit Bureau</span>
           </a>
