@@ -41,6 +41,7 @@ const creditRiskServices: CreditRiskService[] = [
     icon: <BarChart3 className="w-12 h-12 text-secondary" />,
     title: "Portfolio Risk Analysis",
     description:
+    
       "Analyze your entire credit portfolio to identify concentrations, trends, and potential exposures. Understand portfolio performance and optimize your lending strategy.",
   },
   {

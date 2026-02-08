@@ -85,7 +85,7 @@ const HeroSection = () => {
       }, 5000);
     };
 
-    if (!isPaused) start();
+		if (!isPaused) start();
 
     return () => {
       if (intervalRef.current) {

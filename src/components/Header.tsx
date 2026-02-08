@@ -129,7 +129,7 @@ const navItems: NavItem[] = [
   },
   {
     label: "Product Suites",
-    href: "/product-suites",
+    href: "#products",
     subItems: [
       { label: "Credit Information & Risk Reports", href: "/product-suites/credit-reports", description: "Actionable insights for credit decisions" },
       { label: "Decision and Data Analytics", href: "/product-suites/analytics", description: "Data-driven business intelligence" },
@@ -137,7 +137,7 @@ const navItems: NavItem[] = [
       { label: "Data Management", href: "/product-suites/data-management", description: "Data is a valuable source of actionable insight" },
     ],
   },
-  { label: "News", href: "/news" },
+  { label: "News", href: "#news" },
   {
     label: "Customer Information",
     href: "/credit-education",  // points to Consumer Education page
@@ -148,7 +148,7 @@ const navItems: NavItem[] = [
       { label: "FAQs", href: "/FAQ", description: "Frequently asked questions" },
     ],
   },
-  { label: "Contact Us", href: "/contact" },
+  { label: "Contact Us", href: "#contact" },
 ];
 
 export default function Header() {

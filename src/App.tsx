@@ -3,8 +3,8 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-
 import Index from "./pages/Index";
+<<<<<<< HEAD
 import ProductSuitePage from "./pages/ProductSuitePage";
 import CreditReportsPage from "./pages/CreditReportsPage";
 import AnalyticsPage from "./pages/AnalyticsPage";
@@ -21,8 +21,10 @@ import FAQPage from "./pages/FAQ";
 import DisputeResolutionForm from "./pages/DisputeResolutionForm";
 import AboutArmada from "./pages/AboutArmada";
 import OurPeople from "./pages/OurPeople";
+=======
+import CreditEducation from "./pages/CreditEducation";
+>>>>>>> main
 import NotFound from "./pages/NotFound";
-
 
 const queryClient = new QueryClient();
 
@@ -34,6 +36,7 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
+<<<<<<< HEAD
 
            <Route path="/contact" element={<Contact />} />
               <Route path="/SelfInquiry" element={<SelfInquiry />} />
@@ -54,6 +57,10 @@ const App = () => (
           <Route path="/self-inquiry" element={<SelfInquiry />} />
           <Route path="/news" element={<NewsPage />} />
 
+=======
+          <Route path="/credit-education" element={<CreditEducation />} />
+          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+>>>>>>> main
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
